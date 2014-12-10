@@ -1,0 +1,12 @@
+{
+  "ignore": [
+    ".gitignore",
+    "package.json",
+    "README.md",
+    "source",
+    "test"
+  ],
+  "main": "build/google-analytics.js",
+  "name": "Google Analytics",
+  "version": "0.0.0"
+}
