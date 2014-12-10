@@ -1,11 +1,13 @@
 {
   "devDependencies": {
+    "jasmine": "^2.1.1",
     "uglify-js": "^2.4.16",
     "watch": "^0.13.0"
   },
   "private": true,
   "scripts": {
     "build": "node_modules/uglify-js/bin/uglifyjs source/google-analytics.js -o build/google-analytics.js",
+    "test": "node_modules/jasmine/bin/jasmine.js JASMINE_CONFIG_PATH=jasmine.json",
     "watch": "node_modules/watch/cli.js 'npm run build' source"
   }
 }
