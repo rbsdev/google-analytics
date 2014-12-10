@@ -1,8 +1,10 @@
 {
   "ignore": [
+    "bower.json",
     ".gitignore",
+    "jasmine.json",
     "package.json",
-    "README.md",
+    "readme.md",
     "source",
     "test"
   ],
