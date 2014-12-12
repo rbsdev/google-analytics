@@ -1,37 +1,43 @@
 describe('google analytics', function() {
-  var GoogleAnalytics = require('../source/google-analytics.js');
+  it('should throw an error when account is missing', function() {
+    var wrapper = function() {
+      new GoogleAnalytics({
+        category: 'category'
+      });
+    };
 
-  describe('instance', function() {
-    it('should throw an error when account is missing', function() {
-      var wrapper = function() {
-        new GoogleAnalytics({
-          category: 'category'
-        });
-      };
+    expect(wrapper).toThrow();
+  });
 
-      expect(wrapper).toThrow();
-    });
+  it('should throw an error when category is missing', function() {
+    var wrapper = function() {
+      new GoogleAnalytics({
+        account: 'account'
+      });
+    };
 
-    it('should throw an error when category is missing', function() {
-      var wrapper = function() {
-        new GoogleAnalytics({
-          account: 'account'
-        });
-      };
+    expect(wrapper).toThrow();
+  });
 
-      expect(wrapper).toThrow();
-    });
+  it('should not throw an error with required options present', function() {
+    var wrapper = function() {
+      new GoogleAnalytics({
+        account: 'account',
+        category: 'category'
+      });
+    };
 
-    it('should work with required options present', function() {
-      var wrapper = function() {
-        new GoogleAnalytics({
-          account: 'account',
-          category: 'category'
-        });
-      };
+    expect(wrapper).not.toThrow();
+  });
 
-      spyOn(GoogleAnalytics.prototype, 'load');
-      expect(wrapper).not.toThrow();
-    });
+  it('should not throw an error with required options present', function() {
+    var wrapper = function() {
+      new GoogleAnalytics({
+        account: 'account',
+        category: 'category'
+      });
+    };
+
+    expect(wrapper).not.toThrow();
   });
 });

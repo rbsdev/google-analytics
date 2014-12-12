@@ -1,12 +1,17 @@
 {
   "devDependencies": {
+    "jasmine-core": "^2.1.3",
+    "karma": "^0.12.28",
+    "karma-jasmine": "^0.3.2",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "karma-story-reporter": "^0.2.2",
     "uglify-js": "^2.4.16",
     "watch": "^0.13.0"
   },
   "private": true,
   "scripts": {
     "build": "node_modules/uglify-js/bin/uglifyjs source/google-analytics.js -o build/google-analytics.js",
-    "test": "node_modules/jasmine/bin/jasmine.js JASMINE_CONFIG_PATH=jasmine.json",
+    "test": "node_modules/karma/bin/karma start karma.js",
     "watch": "node_modules/watch/cli.js 'npm run build' source"
   }
 }

@@ -1,7 +1,8 @@
 !function() {
-  var GoogleAnalytics;
+  var extend,
+      GoogleAnalytics;
 
-  GoogleAnalytics = function(options) {
+  extend = function(options) {
     var defaults = {
       account: null,
       allowHash: false,
@@ -11,32 +12,55 @@
       trackPageview: true
     };
 
-    if (typeof options != 'object' || (typeof options == 'object' && options instanceof Array)) {
-      options = { };
-    }
-
-    if (!options.account) {
-      throw new Error('missing account information in Google Analytics');
-
-      return;
-    }
-
-    if (!options.category) {
-      throw new Error('missing category information in Google Analytics');
-
-      return;
-    }
-
     for (option in defaults) {
       if (defaults.hasOwnProperty(option) && !options.hasOwnProperty(option)) {
         options[option] = defaults[option];
       }
     }
 
-    options.autoLoad ? this.load() : null;
+    return options;
+  };
+
+  GoogleAnalytics = function(options) {
+    if (typeof options != 'object' || (typeof options == 'object' && options instanceof Array)) {
+      options = { };
+    }
+
+    this.options = extend(options);
+
+    if (!this.options.account) {
+      throw new Error('missing account information in Google Analytics');
+
+      return;
+    }
+
+    if (!this.options.category) {
+      throw new Error('missing category information in Google Analytics');
+
+      return;
+    }
+
+    this.initialize();
+
+    if (this.options.autoLoad) {
+      this.load()
+    }
   };
 
   GoogleAnalytics.prototype = {
+    initialize: function() {
+      window._gaq = window._gaq || [ ];
+
+      this.push(['_setAccount', this.account]);
+      this.push(['_setAccount', this.account]);
+      this.push(['_setAllowHash', this.allowHash]);
+      this.push(['_setAllowLinker', this.allowLinker]);
+
+      if (this.trackPageview) {
+        this.push(['_trackPageview']);
+      }
+    },
+
     load: function() {
       var script = document.createElement('script');
 
@@ -44,14 +68,20 @@
       script.src = 'https://ssl.google-analytics.com/ga.js';
 
       document.body.appendChild(script);
+    },
+
+    push: function() {
+      var data = [ ].slice(arguments);
+
+      window._gaq.push.apply(window, arguments);
+    },
+
+    trackEvent: function() {
+      var data = [ ].slice(arguments);
+
+      this.push(['_trackEvent', this.options.category].concat(data));
     }
   };
-
-  if (typeof module !== 'undefined' && module.exports) {
-    module.exports = GoogleAnalytics;
-
-    return;
-  }
 
   window.GoogleAnalytics = GoogleAnalytics;
 }();
