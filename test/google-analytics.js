@@ -30,14 +30,16 @@ describe('google analytics', function() {
     expect(wrapper).not.toThrow();
   });
 
-  it('should not throw an error with required options present', function() {
-    var wrapper = function() {
-      new GoogleAnalytics({
-        account: 'account',
-        category: 'category'
-      });
-    };
+  it('should inject the SDK script', function() {
+    var scripts;
 
-    expect(wrapper).not.toThrow();
+    new GoogleAnalytics({
+      account: 'account',
+      category: 'category'
+    });
+
+    scripts = document.querySelectorAll('#google-analytics-sdk');
+
+    expect(scripts.length).toBe(1);
   });
 });

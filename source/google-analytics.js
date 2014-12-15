@@ -62,8 +62,15 @@
     },
 
     load: function() {
-      var script = document.createElement('script');
+      var id = 'google-analytics-sdk',
+          script;
 
+      if (document.querySelector('#' + id)) {
+        return;
+      }
+
+      script = document.createElement('script');
+      script.id = id;
       script.async = true;
       script.src = 'https://ssl.google-analytics.com/ga.js';
 
