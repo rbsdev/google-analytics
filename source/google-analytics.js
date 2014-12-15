@@ -5,7 +5,6 @@
   extend = function(options) {
     var defaults = {
       account: null,
-      allowHash: false,
       allowLinker: true,
       autoInit: true,
       autoLoad: true,
@@ -55,8 +54,6 @@
       window._gaq = window._gaq || [ ];
 
       this.push(['_setAccount', this.options.account]);
-      this.push(['_setAccount', this.options.account]);
-      this.push(['_setAllowHash', this.options.allowHash]);
       this.push(['_setAllowLinker', this.options.allowLinker]);
 
       if (this.options.trackPageview) {
