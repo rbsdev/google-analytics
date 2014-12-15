@@ -85,4 +85,42 @@ describe('google analytics', function() {
     expect(window._gaq).toContain(['_setCustomVar', 1, 'User-Defined', 'Assinante', 1]);
     expect(window._gaq).toContain(['_setCustomVar', 4, 'RangeZH', 'Range 26a30', 2]);
   });
+
+  it('should respect autoInit option', function() {
+    var googleAnalytics;
+
+    spyOn(GoogleAnalytics.prototype, 'initialize');
+
+    googleAnalytics = factory({
+      account: 'account',
+      autoInit: false,
+      category: 'category'
+    });
+
+    expect(googleAnalytics.options.autoInit).toBeFalsy();
+    expect(googleAnalytics.initialize).not.toHaveBeenCalled();
+  });
+
+  it('should respect autoLoad option', function() {
+    var googleAnalytics;
+
+    spyOn(GoogleAnalytics.prototype, 'load');
+
+    googleAnalytics = factory({
+      account: 'account',
+      autoLoad: false,
+      category: 'category'
+    });
+
+    expect(googleAnalytics.options.autoLoad).toBeFalsy();
+    expect(googleAnalytics.load).not.toHaveBeenCalled();
+  });
+
+  it('it should queue some commands on initialization', function() {
+    var googleAnalytics = factory();
+
+    expect(window._gaq).toContain(['_setAccount', googleAnalytics.options.account]);
+    expect(window._gaq).toContain(['_setAllowLinker', googleAnalytics.options.allowLinker]);
+    expect(window._gaq).toContain(['_trackPageview']);
+  });
 });
