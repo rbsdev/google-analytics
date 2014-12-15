@@ -81,13 +81,13 @@
     },
 
     push: function() {
-      var data = [ ].slice(arguments);
+      var data = [ ].slice.apply(arguments);
 
-      window._gaq.push.apply(window, arguments);
+      window._gaq.push.apply(window._gaq, data);
     },
 
     trackEvent: function() {
-      var data = [ ].slice(arguments);
+      var data = [ ].slice.apply(arguments);
 
       this.push(['_trackEvent', this.options.category].concat(data));
     }

@@ -39,7 +39,7 @@ describe('google analytics', function() {
   it('should inject the SDK script only once', function() {
     var scripts = document.querySelectorAll('#google-analytics-sdk');
 
-    [ ].slice.apply(document.querySelectorAll('script')).forEach(function(script, index, scripts) {
+    [ ].slice.apply(scripts).forEach(function(script, index, scripts) {
       script.parentElement.removeChild(script);
     });
 
@@ -49,5 +49,23 @@ describe('google analytics', function() {
     scripts = document.querySelectorAll('#google-analytics-sdk');
 
     expect(scripts.length).toBe(1);
+  });
+
+  it('should push to the global _gaq queue', function() {
+    var googleAnalytics = factory();
+
+    window._gaq = [ ];
+    googleAnalytics.push('event');
+
+    expect(window._gaq).toContain('event');
+  });
+
+  it('should push trackEvent to the global _gaq queue', function() {
+    var googleAnalytics = factory();
+
+    window._gaq = [ ];
+    googleAnalytics.trackEvent('event');
+
+    expect(window._gaq).toContain(['_trackEvent', googleAnalytics.options.category, 'event']);
   });
 });
