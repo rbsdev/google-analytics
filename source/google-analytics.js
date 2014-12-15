@@ -54,12 +54,12 @@
     initialize: function() {
       window._gaq = window._gaq || [ ];
 
-      this.push(['_setAccount', this.account]);
-      this.push(['_setAccount', this.account]);
-      this.push(['_setAllowHash', this.allowHash]);
-      this.push(['_setAllowLinker', this.allowLinker]);
+      this.push(['_setAccount', this.options.account]);
+      this.push(['_setAccount', this.options.account]);
+      this.push(['_setAllowHash', this.options.allowHash]);
+      this.push(['_setAllowLinker', this.options.allowLinker]);
 
-      if (this.trackPageview) {
+      if (this.options.trackPageview) {
         this.push(['_trackPageview']);
       }
     },
