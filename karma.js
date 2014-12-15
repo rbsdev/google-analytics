@@ -7,6 +7,7 @@ module.exports = function(config) {
     ],
     colors: true,
     files: [
+      'node_modules/polyfill-function-prototype-bind/bind.js',
       'build/*.js',
       'test/*.js'
     ],
