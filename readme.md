@@ -28,6 +28,7 @@ Options
 * autoInit: true as default, automatically set the basic configuration
 * autoLoad: true as default, automatically inject the SDK
 * category: *required*, the category to use with further trackEvent calls
+* [domainName](https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiDomainDirectory#_gat.GA_Tracker_._setDomainName): clicrbs.com.br as default
 * [trackPageview](https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiBasicConfiguration#_gat.GA_Tracker_._trackPageview): true as default
 * trackUser: true as default, sets two custom vars with the user range and type
 

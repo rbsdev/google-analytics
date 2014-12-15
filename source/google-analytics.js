@@ -9,6 +9,7 @@
       autoInit: true,
       autoLoad: true,
       category: null,
+      domainName: 'clicrbs.com.br',
       trackPageview: true,
       trackUser: true
     };
@@ -56,6 +57,10 @@
 
       this.push('_setAccount', this.options.account);
       this.push('_setAllowLinker', this.options.allowLinker);
+
+      if (this.options.domainName) {
+        this.push('_setDomainName', this.options.domainName);
+      }
 
       if (this.options.trackPageview) {
         this.push('_trackPageview');

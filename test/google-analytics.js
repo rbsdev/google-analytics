@@ -121,6 +121,7 @@ describe('google analytics', function() {
 
     expect(window._gaq).toContain(['_setAccount', googleAnalytics.options.account]);
     expect(window._gaq).toContain(['_setAllowLinker', googleAnalytics.options.allowLinker]);
+    expect(window._gaq).toContain(['_setDomainName', googleAnalytics.options.domainName]);
     expect(window._gaq).toContain(['_trackPageview']);
   });
 });
