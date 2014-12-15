@@ -10,5 +10,5 @@
   "main": "build/google-analytics.js",
   "name": "google-analytics",
   "private": true,
-  "version": "0.0.0"
+  "version": "0.0.1"
 }
