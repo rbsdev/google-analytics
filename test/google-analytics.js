@@ -36,9 +36,14 @@ describe('google analytics', function() {
     expect(window._gaq).not.toBeUndefined();
   });
 
-  it('should inject the SDK script', function() {
-    var scripts;
+  it('should inject the SDK script only once', function() {
+    var scripts = document.querySelectorAll('#google-analytics-sdk');
 
+    [ ].slice.apply(document.querySelectorAll('script')).forEach(function(script, index, scripts) {
+      script.parentElement.removeChild(script);
+    });
+
+    factory();
     factory();
 
     scripts = document.querySelectorAll('#google-analytics-sdk');
