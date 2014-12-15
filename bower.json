@@ -1,8 +1,8 @@
 {
   "ignore": [
-    "bower.json",
     ".gitignore",
-    "jasmine.json",
+    "bower.json",
+    "karma.js",
     "package.json",
     "readme.md",
     "source",
