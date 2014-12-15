@@ -19,6 +19,9 @@ describe('google analytics', function() {
       script.parentElement.removeChild(script);
     });
 
+    document.cookie = 'urscn=0;expires=Thu, 01 Jan 1970 00:00:01 GMT';
+    document.cookie = 'uscn=0;expires=Thu, 01 Jan 1970 00:00:01 GMT';
+
     delete window._gaq;
   });
 
@@ -60,7 +63,7 @@ describe('google analytics', function() {
 
     googleAnalytics.push('event');
 
-    expect(window._gaq).toContain('event');
+    expect(window._gaq).toContain(['event']);
   });
 
   it('should push trackEvent to the global _gaq queue', function() {
@@ -69,5 +72,17 @@ describe('google analytics', function() {
     googleAnalytics.trackEvent('event');
 
     expect(window._gaq).toContain(['_trackEvent', googleAnalytics.options.category, 'event']);
+  });
+
+  it('should identify the user', function() {
+    var googleAnalytics;
+
+    document.cookie = 'urscn=o';
+    document.cookie = 'uscn=2';
+
+    googleAnalytics = factory();
+
+    expect(window._gaq).toContain(['_setCustomVar', 1, 'User-Defined', 'Assinante', 1]);
+    expect(window._gaq).toContain(['_setCustomVar', 4, 'RangeZH', 'Range 26a30', 2]);
   });
 });
