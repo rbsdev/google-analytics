@@ -1,7 +1,6 @@
 {
   "ignore": [
     ".gitignore",
-    "bower.json",
     "karma.js",
     "package.json",
     "readme.md",
@@ -9,7 +8,7 @@
     "test"
   ],
   "main": "build/google-analytics.js",
-  "name": "Google Analytics",
+  "name": "google-analytics",
   "private": true,
   "version": "0.0.0"
 }
