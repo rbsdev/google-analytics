@@ -12,6 +12,16 @@ describe('google analytics', function() {
     return factory.bind(window, options);
   };
 
+  beforeEach(function() {
+    var scripts = document.querySelectorAll('#google-analytics-sdk');
+
+    [ ].slice.apply(scripts).forEach(function(script) {
+      script.parentElement.removeChild(script);
+    });
+
+    delete window._gaq;
+  });
+
   it('should throw an error when account is missing', function() {
     expect(factory.with({
       category: 'category'
@@ -29,19 +39,13 @@ describe('google analytics', function() {
   });
 
   it('should declare the global _gaq queue', function() {
-    delete window._gaq;
-
     factory();
 
     expect(window._gaq).not.toBeUndefined();
   });
 
   it('should inject the SDK script only once', function() {
-    var scripts = document.querySelectorAll('#google-analytics-sdk');
-
-    [ ].slice.apply(scripts).forEach(function(script, index, scripts) {
-      script.parentElement.removeChild(script);
-    });
+    var scripts;
 
     factory();
     factory();
@@ -54,7 +58,6 @@ describe('google analytics', function() {
   it('should push to the global _gaq queue', function() {
     var googleAnalytics = factory();
 
-    window._gaq = [ ];
     googleAnalytics.push('event');
 
     expect(window._gaq).toContain('event');
@@ -63,7 +66,6 @@ describe('google analytics', function() {
   it('should push trackEvent to the global _gaq queue', function() {
     var googleAnalytics = factory();
 
-    window._gaq = [ ];
     googleAnalytics.trackEvent('event');
 
     expect(window._gaq).toContain(['_trackEvent', googleAnalytics.options.category, 'event']);
