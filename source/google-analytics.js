@@ -7,6 +7,7 @@
       account: null,
       allowHash: false,
       allowLinker: true,
+      autoInit: true,
       autoLoad: true,
       category: null,
       trackPageview: true
@@ -40,7 +41,9 @@
       return;
     }
 
-    this.initialize();
+    if (this.options.autoInit) {
+      this.initialize();
+    }
 
     if (this.options.autoLoad) {
       this.load()
