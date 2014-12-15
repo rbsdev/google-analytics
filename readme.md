@@ -23,14 +23,41 @@ googleAnalytics.push('_setCustomVar', 'custom key', 'custom value');
 
 Options
 
-* account: *required*,
-* [allowLinker](https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiDomainDirectory#_gat.GA_Tracker_._setAllowLinker): true  as default
-* autoInit: true as default, automatically set the basic configuration
-* autoLoad: true as default, automatically inject the SDK
-* category: *required*, the category to use with further trackEvent calls
-* [domainName](https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiDomainDirectory#_gat.GA_Tracker_._setDomainName): clicrbs.com.br as default
-* [trackPageview](https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiBasicConfiguration#_gat.GA_Tracker_._trackPageview): true as default
-* trackUser: true as default, sets two custom vars with the user range and type
+* account
+  type: string
+  *required*
+
+* [allowLinker](https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiDomainDirectory#_gat.GA_Tracker_._setAllowLinker)
+  type: boolean
+  default: true
+
+* autoInit
+  automatically set the basic configuration
+  type: boolean
+  default: true
+
+* autoLoad:
+  automatically inject the SDK
+  type: boolean
+  default: true
+
+* category
+  the category to use with further trackEvent calls
+  type: string
+  *required*
+
+* [domainName](https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiDomainDirectory#_gat.GA_Tracker_._setDomainName)
+  type: string
+  default: clicrbs.com.br
+
+* [trackPageview](https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiBasicConfiguration#_gat.GA_Tracker_._trackPageview)
+  type: boolean
+  default: true
+
+* trackUser
+  sets two custom vars with the user range and type
+  type: boolean
+  default: true
 
 ## Develop
 
@@ -45,5 +72,6 @@ npm run build
 npm run watch
 
 # bump version
-bower version [major | minor | patch]
+bower version patch # major | minor | patch
+git push --follow-tags
 ```
