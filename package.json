@@ -11,8 +11,7 @@
   "private": true,
   "scripts": {
     "build": "node_modules/uglify-js/bin/uglifyjs source/google-analytics.js -o build/google-analytics.js",
-    "clean": "rm -fr build/*",
-    "posttest": "rm -f npm-debug.log",
+    "clean": "rm -fr build/* npm-debug.log",
     "test": "node_modules/karma/bin/karma start karma.js",
     "watch": "node_modules/watch/cli.js 'npm run build' source"
   }
