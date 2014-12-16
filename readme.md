@@ -51,7 +51,7 @@ Options
   <br>
   default: `true`
 
-* bindData:
+* [bindData](#binddata-option):
   <br>
   watch for data-ga attribute in clicked elements
   <br>
