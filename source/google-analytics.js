@@ -8,6 +8,8 @@
       allowLinker: true,
       autoInit: true,
       autoLoad: true,
+      bindData: true,
+      bindDataGlue: /\s*,\s*/g,
       category: null,
       domainName: 'clicrbs.com.br',
       trackPageview: true,
@@ -66,9 +68,30 @@
         this.push('_trackPageview');
       }
 
+      if (this.options.bindData) {
+        this.bindData();
+      }
+
       if (this.options.trackUser) {
         this.trackUser();
       }
+    },
+
+    bindData: function() {
+      document.body.addEventListener('click', function(event) {
+        var element = event.target,
+            data;
+
+        do {
+          data = element.dataset.ga;
+          element = element.parentElement;
+        } while (element && data === undefined);
+
+        if (data) {
+          data = data.split(this.options.bindDataGlue);
+          this.trackEvent.apply(this, data);
+        }
+      }.bind(this));
     },
 
     load: function() {

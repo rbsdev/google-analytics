@@ -33,7 +33,7 @@ Options
   <br>
   type: boolean
   <br>
-  default: true
+  default: `true`
 
 * autoInit
   <br>
@@ -41,7 +41,7 @@ Options
   <br>
   type: boolean
   <br>
-  default: true
+  default: `true`
 
 * autoLoad:
   <br>
@@ -49,7 +49,23 @@ Options
   <br>
   type: boolean
   <br>
-  default: true
+  default: `true`
+
+* bindData:
+  <br>
+  watch for data-ga attribute in clicked elements
+  <br>
+  type: boolean
+  <br>
+  default: `true`
+
+* bindDataGlue:
+  <br>
+  the string used to separate arguments in data-ga attribute
+  <br>
+  type: RegExp
+  <br>
+  default: `/\s*,\s*/g`
 
 * category
   <br>
@@ -63,13 +79,13 @@ Options
   <br>
   type: string
   <br>
-  default: clicrbs.com.br
+  default: `clicrbs.com.br`
 
 * [trackPageview](https://developers.google.com/analytics/devguides/collection/gajs/methods/gaJSApiBasicConfiguration#_gat.GA_Tracker_._trackPageview)
   <br>
   type: boolean
   <br>
-  default: true
+  default: `true`
 
 * trackUser
   <br>
@@ -77,7 +93,22 @@ Options
   <br>
   type: boolean
   <br>
-  default: true
+  default: `true`
+
+### bindData option
+
+By default, any clicked element that has data-attribute on it will automatically fire an `_trackEvent`.
+To disable this behavior, just set the `bindData` option to `false`.
+
+```html
+<!-- by default, arguments are comma separeted -->
+<!-- you can change that with the bindDataGlue option -->
+<a href="#top" data-ga="anchor click, back to top">Go back to the top</a>
+<!-- _gaq.push(['_trackEvent', 'category', 'anchor click', 'back to top']); -->
+
+<button data-ga="button click, join with us">Join with us</button>
+<!-- _gaq.push(['_trackEvent', 'category', 'button click', 'join with us']); -->
+```
 
 ## Develop
 
