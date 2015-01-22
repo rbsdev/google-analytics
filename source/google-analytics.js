@@ -1,4 +1,7 @@
-(function() {
+(function(global) {
+
+  'use strict';
+
   var extend,
       GoogleAnalytics;
 
@@ -51,7 +54,7 @@
 
   GoogleAnalytics.prototype = {
     initialize: function() {
-      window._gaq = window._gaq || [ ];
+      global._gaq = global._gaq || [ ];
 
       this.push('_setAccount', this.options.account);
       this.push('_setAllowLinker', this.options.allowLinker);
@@ -109,7 +112,7 @@
     push: function() {
       var data = [ ].slice.apply(arguments);
 
-      window._gaq.push(data);
+      global._gaq.push(data);
     },
 
     trackEvent: function() {
@@ -171,5 +174,5 @@
     }
   };
 
-  window.GoogleAnalytics = GoogleAnalytics;
-}());
+  global.GoogleAnalytics = GoogleAnalytics;
+}(window));
