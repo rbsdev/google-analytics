@@ -1,4 +1,4 @@
-!function() {
+(function() {
   var extend,
       GoogleAnalytics;
 
@@ -16,7 +16,7 @@
       trackUser: true
     };
 
-    for (option in defaults) {
+    for (var option in defaults) {
       if (defaults.hasOwnProperty(option) && !options.hasOwnProperty(option)) {
         options[option] = defaults[option];
       }
@@ -34,14 +34,10 @@
 
     if (!this.options.account) {
       throw new Error('missing account information in Google Analytics');
-
-      return;
     }
 
     if (!this.options.category) {
       throw new Error('missing category information in Google Analytics');
-
-      return;
     }
 
     if (this.options.autoInit) {
@@ -49,7 +45,7 @@
     }
 
     if (this.options.autoLoad) {
-      this.load()
+      this.load();
     }
   };
 
@@ -176,4 +172,4 @@
   };
 
   window.GoogleAnalytics = GoogleAnalytics;
-}();
+}());
