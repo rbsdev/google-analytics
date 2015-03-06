@@ -82,7 +82,7 @@
             data;
 
         do {
-          data = element.dataset.ga;
+          data = element.getAttribute('data-ga');
           element = element.parentElement;
         } while (element && data === undefined);
 
